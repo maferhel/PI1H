@@ -10,17 +10,17 @@ app = FastAPI()
 
 # CARGA DE DATOS
 
-df_games_filt_def = pd.read_parquet('DATA\df_games_filt_def.parquet')
+df_games_filt_def = pd.read_parquet('DATA/df_games_filt_def.parquet')
 
-df_userdata = pd.read_parquet('DATA\df_userdata.parquet')
+df_userdata = pd.read_parquet('DATA/df_userdata.parquet')
 
-df_UserForGenre = pd.read_parquet('DATA\df_UserForGenre.parquet')
+df_UserForGenre = pd.read_parquet('DATA/df_UserForGenre.parquet')
 
-df_best_developer_year = pd.read_parquet('DATA\df_best_developer_year.parquet')
+df_best_developer_year = pd.read_parquet('DATA/df_best_developer_year.parquet')
 
-df_developer_reviews_analysis = pd.read_parquet('DATA\df_developer_reviews_analysis.parquet')
+df_developer_reviews_analysis = pd.read_parquet('DATA/df_developer_reviews_analysis.parquet')
 
-df_muestramodelo = pd.read_parquet('DATA\df_muestramodelo.parquet')
+df_muestramodelo = pd.read_parquet('DATA/df_muestramodelo.parquet')
 
 
 # FUNCIONES 
