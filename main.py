@@ -2,12 +2,16 @@ from fastapi import FastAPI, Query
 import pandas as pd
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
+import uvicorn
+
 
 
 
 app = FastAPI()
 
 
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=10000)
 # CARGA DE DATOS
 
 df_games_filt_def = pd.read_parquet('DATA/df_games_filt_def.parquet')
