@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/opt/render/project/src/.venv/lib/python3.11/site-packages')
 from fastapi import FastAPI, Query, HTTPException
 import pandas as pd
 from typing import List, Tuple
