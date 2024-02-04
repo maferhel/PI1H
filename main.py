@@ -9,24 +9,17 @@ from google.cloud import storage
 import os
 
 app = FastAPI(
-    # ...
-    # Añade esta línea para ignorar el favicon.ico
+    # Esta línea se añadió para ignorar el favicon.ico porque daba error 404
     default_response_class_for_errors={404: HTTPException},
 )
 
 if os.environ.get("RENDER") is not None:
-    # Usar las credenciales del archivo secreto
-    # Agregar aquí la lógica para usar las credenciales del archivo secreto
-    pass
+    # Agregar aquí la lógica para usar las credenciales proporcionadas automáticamente por Render
+    storage_client = storage.Client()
 else:
-    # Usar la variable de entorno local
+    # Usar la variable de entorno local si no estás en Render
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
-
-
-
-# Configurar el cliente de Google Cloud Storage
-
-storage_client = storage.Client()
+    storage_client = storage.Client()
 
 # Función para cargar datos desde GCS
 def cargar_datos_desde_gcs(bucket_name, file_name):
@@ -44,7 +37,6 @@ df_UserForGenre = cargar_datos_desde_gcs(bucket_name, 'DATA/df_UserForGenre.parq
 df_best_developer_year = cargar_datos_desde_gcs(bucket_name, 'DATA/df_best_developer_year.parquet')
 df_developer_reviews_analysis = cargar_datos_desde_gcs(bucket_name, 'DATA/df_developer_reviews_analysis.parquet')
 df_muestramodelo = cargar_datos_desde_gcs(bucket_name, 'DATA/df_muestramodelo.parquet')
-
 
 # FUNCIONES 
 
