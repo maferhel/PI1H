@@ -6,10 +6,11 @@ from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
 import uvicorn
 from google.cloud import storage
+from google.auth import default
 import os
-from dotenv import load_dotenv 
 
 # Cargar variables de entorno desde el archivo CREDENCIALES.env
+from dotenv import load_dotenv 
 load_dotenv("CREDENCIALES.env")
 
 app = FastAPI(
@@ -17,32 +18,11 @@ app = FastAPI(
     default_response_class_for_errors={404: HTTPException},
 )
 
-if os.environ.get("RENDER") is not None:
-    # Acceder a las credenciales
-    access_token = os.getenv("access_token")
-    refresh_token = os.getenv("refresh_token")
-    client_id = os.getenv("client_id")
-    client_secret = os.getenv("client_secret")
-    token_expiry = os.getenv("token_expiry")
-    token_uri = os.getenv("token_uri")
-    user_agent = os.getenv("user_agent")
-    
-    # Configurar el cliente de almacenamiento con las credenciales
-    storage_client = storage.Client(
-        credentials={
-            "access_token": access_token,
-            "refresh_token": refresh_token,
-            "client_id": client_id,
-            "client_secret": client_secret,
-            "token_expiry": token_expiry,
-            "token_uri": token_uri,
-            "user_agent": user_agent
-        }
-    )
-else:
-    # Usar la variable de entorno local si no estás en Render
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
-    storage_client = storage.Client()
+# Obtener las credenciales predeterminadas del entorno
+credentials, _ = default()
+
+# Configurar el cliente de almacenamiento con las credenciales
+storage_client = storage.Client(credentials=credentials)
 
 # Función para cargar datos desde GCS
 def cargar_datos_desde_gcs(bucket_name, file_name):
