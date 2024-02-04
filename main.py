@@ -7,6 +7,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import uvicorn
 from google.cloud import storage
 import os
+from dotenv import load_dotenv 
+
+# Cargar variables de entorno desde el archivo CREDENCIALES.env
+load_dotenv("CREDENCIALES.env")
 
 app = FastAPI(
     # Esta línea se añadió para ignorar el favicon.ico porque daba error 404
@@ -14,8 +18,27 @@ app = FastAPI(
 )
 
 if os.environ.get("RENDER") is not None:
-    # Agregar aquí la lógica para usar las credenciales proporcionadas automáticamente por Render
-    storage_client = storage.Client()
+    # Acceder a las credenciales
+    access_token = os.getenv("access_token")
+    refresh_token = os.getenv("refresh_token")
+    client_id = os.getenv("client_id")
+    client_secret = os.getenv("client_secret")
+    token_expiry = os.getenv("token_expiry")
+    token_uri = os.getenv("token_uri")
+    user_agent = os.getenv("user_agent")
+    
+    # Configurar el cliente de almacenamiento con las credenciales
+    storage_client = storage.Client(
+        credentials={
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "token_expiry": token_expiry,
+            "token_uri": token_uri,
+            "user_agent": user_agent
+        }
+    )
 else:
     # Usar la variable de entorno local si no estás en Render
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
