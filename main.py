@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 import pandas as pd
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
@@ -6,7 +6,11 @@ import uvicorn
 from google.cloud import storage
 import os
 
-app = FastAPI()
+app = FastAPI(
+    # ...
+    # Añade esta línea para ignorar el favicon.ico
+    default_response_class_for_errors={404: HTTPException},
+)
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
 
