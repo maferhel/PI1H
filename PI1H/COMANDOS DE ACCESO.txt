@@ -1,0 +1,38 @@
+https://github.com/maferhel/PI1H.git
+
+
+
+git init 
+git add . 
+git commit -m "mi tarea"  
+git remote add origin https://github.com/maferhel/PI1H.git
+git push   origin master  
+
+
+
+
+git add requirements.txt
+git commit -m "Actualizar las dependencias en requirements.txt"
+git push origin master
+
+
+ACTIVAR ENTORNO VIRTUAL
+
+	desde powershell
+cd PI1H-env
+cd scripts
+.\activate.ps1
+
+	desde terminall Python
+.\PI1H-env\Scripts\activate
+uvicorn main:app --reload
+
+
+"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
+"C:\Users\LENOVO\Desktop\application_default_credentials.json"
+
+VARIABLE DE ENTORNO
+$env:GOOGLE_CLOUD_PROJECT = "pi1h-413301"
+$env:GOOGLE_APPLICATION_CREDENTIALS = "C:\Users\LENOVO\Desktop\application_default_credentials.json"
+.\PI1H-env\Scripts\activate
+uvicorn main:app --reload

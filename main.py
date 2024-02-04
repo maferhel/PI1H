@@ -3,28 +3,33 @@ import pandas as pd
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
 import uvicorn
-
-
-
+from google.cloud import storage
+import os
 
 app = FastAPI()
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=10000)
-# CARGA DE DATOS
+# Configurar el cliente de Google Cloud Storage
 
-df_games_filt_def = pd.read_parquet('DATA/df_games_filt_def.parquet')
+storage_client = storage.Client()
 
-df_userdata = pd.read_parquet('DATA/df_userdata.parquet')
+# Función para cargar datos desde GCS
+def cargar_datos_desde_gcs(bucket_name, file_name):
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(file_name)
+    with blob.open('rb') as f:
+        df = pd.read_parquet(f)
+    return df
 
-df_UserForGenre = pd.read_parquet('DATA/df_UserForGenre.parquet')
-
-df_best_developer_year = pd.read_parquet('DATA/df_best_developer_year.parquet')
-
-df_developer_reviews_analysis = pd.read_parquet('DATA/df_developer_reviews_analysis.parquet')
-
-df_muestramodelo = pd.read_parquet('DATA/df_muestramodelo.parquet')
+# Cargar los datos desde GCS
+bucket_name = 'pi1h-bucket'  # Nombre del bucket en GCS donde se encuentran los archivos
+df_games_filt_def = cargar_datos_desde_gcs(bucket_name, 'DATA/df_games_filt_def.parquet')
+df_userdata = cargar_datos_desde_gcs(bucket_name, 'DATA/df_userdata.parquet')
+df_UserForGenre = cargar_datos_desde_gcs(bucket_name, 'DATA/df_UserForGenre.parquet')
+df_best_developer_year = cargar_datos_desde_gcs(bucket_name, 'DATA/df_best_developer_year.parquet')
+df_developer_reviews_analysis = cargar_datos_desde_gcs(bucket_name, 'DATA/df_developer_reviews_analysis.parquet')
+df_muestramodelo = cargar_datos_desde_gcs(bucket_name, 'DATA/df_muestramodelo.parquet')
 
 
 # FUNCIONES 
@@ -163,3 +168,5 @@ async def recomendacion_juego(producto_id: int, num_recomendaciones: int = 5) ->
     return nombre_juego, juegos_recomendados
 
 
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=10000)
