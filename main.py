@@ -14,7 +14,15 @@ app = FastAPI(
     default_response_class_for_errors={404: HTTPException},
 )
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
+if os.environ.get("RENDER") is not None:
+    # Usar las credenciales del archivo secreto
+    # Agregar aquí la lógica para usar las credenciales del archivo secreto
+    pass
+else:
+    # Usar la variable de entorno local
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\LENOVO\AppData\Roaming\gcloud\application_default_credentials.json"
+
+
 
 # Configurar el cliente de Google Cloud Storage
 
