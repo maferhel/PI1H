@@ -41,7 +41,7 @@ Para acceder a la funcionalidad completa de la API y explorar las recomendacione
 - En esta etapa me avoque a trabajar sobre el data sets "df_UserForGenre", el que finalmente utilice para realizar el modelo de recomendación, concretamente el de recomendación de juego con una relación ítem-ítem, al que se le eliminaron las columnas innecesarias y se efectuaron las manipulaciones que eran apropiadas para disponibilizar una base de datos consumible por el modelo.<br />
 
 **6. ANÁLISIS EXPLORATORIO DE DATOS (EDA)** <br />
--Depurada la base de datos, por medio de distintas erramientas de visualización, investigé relaciones entre variables, identifiqué outliers y busqué patrones interesantes en los datos.<br />
+- Depurada la base de datos, por medio de distintas erramientas de visualización, investigé relaciones entre variables, identifiqué outliers y busqué patrones interesantes en los datos.<br />
 
 **7. ENTRENAMIENTO DEL MODELO DE RECOMENDACIÓN DE JUEGOS** <br />
 - Aquí,a partir de la codificación de la columna "genres" realizada en la etapa 5, mediante la técnica de codificación one-hot para convertir los géneros en características binarias, teniendo presente la particularidad de esa columna, por ser una lista de cadenas de str, finalmente desarrollé la función para entrenar y consumir el modelo de ML, de recomendación de juegos.<br />
