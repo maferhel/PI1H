@@ -22,12 +22,12 @@ Asimismo, éste enfoque involucra la realización de distintas tareas de Data En
 - La finalidad de esta etapa es entender cual es la relación entre las tres tablas, ya que en el data frame "items" se encontrarían todas las claves o llaves a partir de las cuales se pueden establecer conexiones con las demás tablas. Por otro lado, la tabla "games" contiene todos los productos que integran el negocio y, por su parte, en la tabla "reviews" se han volcado datos a cerca de la experiencia que han tenido los usuarios en la utilización de esos productos.<br />
 - A raiz de esta exploración se encontraron hallazgos preliminares que se relacionan con valores faltantes y composición en sí de los datas sets, que se fueron depurando a medida que se realizaban las consultas.<br />
 
-**3.- TRANSFORMACIÓN DE DATOS.** <br />
+**3. TRANSFORMACIÓN DE DATOS.** <br />
 - En esta sección realicé transformaciones esenciales para cargar los conjuntos de datos con el formato adecuado. Estas transformaciones se llevaron a cabo con el propósito de optimizar tanto el rendimiento de la API como el entrenamiento del modelo. <br />
 - Asimismo creé la columna **``` sentiment_analysis ```** aplicando análisis de sentimiento a las reseñas de los usuarios.Si bien, finalmente opté por aplicar definitivamente la libreria "textblob", previamente hice una comparación con los resultados arrojados por la biblioteca NLTK y mediante gráficos de torta representé los resultados las reseñas en negativas (valor '0'), neutrales (valor '1') o positivas (valor '2').<br />
 - Finalmente opté por utilizar la librería "textblob" porque demostró una tendencia más "positiva" y, por ende útil para el futuro modelo de recomendación, ya que para ello necesesitamos que haya la mayor cantidad de recomendaciones positivas, o por lo menos neutrales, para que el modelo funcione mejor.<br />
 
-**4.- CARGA DE DATOS (DESARROLLO DE FUNCIONES).** <br />
+**4. CARGA DE DATOS (DESARROLLO DE FUNCIONES).** <br />
 
 - En vista de que los datos sean consumibles a través de una API se desarrollaron las siiguientes funciones:<br />
   + Endpoint 1 (def developer): devuelve la cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora.<br />
@@ -35,7 +35,7 @@ Asimismo, éste enfoque involucra la realización de distintas tareas de Data En
   + Endpoint 3 (def UserForGenre): su ejecución arroja el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.<br />
   + Endpoint 4 (def best_developer_year): su consulta devuelve el top 3 de desarrolladores con juegos más recomendados por usuarios para el año dado.<br />
   + Endpoint 5 (def developer_reviews_analysis): Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor positivo o negativo.<br />
-Para acceder a la funcionalidad completa de la API y explorar las recomendaciones de juegos, puedes visitar este enlace [URL de la API](https://.....................). En este sitio, encontrarás las diversas funciones desarrolladas. ¡Disfruta explorando!.
+Para acceder a la funcionalidad completa de la API y explorar las recomendaciones de juegos, puedes visitar este enlace [URL de la API](http://127.0.0.1:8000/docs) En este sitio, encontrarás las diversas funciones desarrolladas. ¡Disfruta explorando!.
   
 **5. PREPARACIÓN DEL MODELO DE RECOMENDACIÓN** <br />
 - En esta etapa me avoque a trabajar sobre el data sets "df_UserForGenre", el que finalmente utilice para realizar el modelo de recomendación, concretamente el de recomendación de juego con una relación ítem-ítem, al que se le eliminaron las columnas innecesarias y se efectuaron las manipulaciones que eran apropiadas para disponibilizar una base de datos consumible por el modelo.<br />
@@ -50,7 +50,7 @@ Como este readme es un esquema de lo que implicó el proyecyo, los invito a cons
 
 
 **4. Implementación de MLOps** <br />
-Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](https://.....................). <br />
+Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](http://127.0.0.1:8000/docs). <br />
 
 **5. Video Explicativo** <br />
 Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https:/.....).<br />
