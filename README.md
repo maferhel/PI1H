@@ -34,7 +34,7 @@ Asimismo, la elaboración de este producto involucra la realización de distinta
   + Endpoint 3 (def UserForGenre): su ejecución arroja el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.<br />
   + Endpoint 4 (def best_developer_year): su consulta devuelve el top 3 de desarrolladores con juegos más recomendados por usuarios para el año dado.<br />
   + Endpoint 5 (def developer_reviews_analysis): Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor positivo o negativo.<br />
-Para acceder a la funcionalidad completa de la API y explorar las recomendaciones de juegos, puedes visitar este enlace [URL de la API](http://127.0.0.1:8000/docs) En este sitio, encontrarás las diversas funciones desarrolladas. ¡Disfruta explorando!.
+Para acceder a la funcionalidad completa de la API y explorar las recomendaciones de juegos, puedes visitar este enlace [URL de la API](https://pi1h.onrender.com) En este sitio, encontrarás las diversas funciones desarrolladas. ¡Disfruta explorando!.
   
 **5. PREPARACIÓN DEL MODELO DE RECOMENDACIÓN** <br />
 - En esta etapa me avoque a trabajar sobre el data sets "df_UserForGenre", el que finalmente utilice para realizar el modelo de recomendación, concretamente el de recomendación de juego con una relación ítem-ítem, al que se le eliminaron las columnas innecesarias y se efectuaron las manipulaciones que eran apropiadas para disponibilizar una base de datos consumible por el modelo.<br />
@@ -49,7 +49,7 @@ Como este readme es un esquema de lo que implicó el proyecyo, los invito a cons
 
 
 ## Implementación de MLOps** <br />
-Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](http://127.0.0.1:8000/docs). <br />
+Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](https://pi1h.onrender.com). <br />
 
 ## Video Explicativo** <br />
 Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https:/.....).<br />
@@ -82,7 +82,7 @@ pip install -r requirements.txt
 ```
 uvicorn main:app --reload
 ```
-ADVERTENCIA, al archivo main.py deberás hacerle las modificaciones necesarias para que consuma los datasets desde tu ordenador ya que estan redactadas para que se consuman desde Google Cloud.
+
 
 ## Autor <br />
 #### María Fernanda Helguero. <br />

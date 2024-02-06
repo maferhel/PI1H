@@ -4,25 +4,37 @@ import pandas as pd
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
 import uvicorn
+import requests
+from io import BytesIO
 
 app = FastAPI(
     # Esta línea se añadió para ignorar el favicon.ico porque daba error 404
     default_response_class_for_errors={404: HTTPException},
 )
 
-# Cargar los datos 
+# CARGAR DATOS 
 
-df_games_filt_def = pd.read_parquet('DATA\df_games_filt_def.parquet')
+# Lista de URLs de los archivos en GitHub
+urls = [
+    'https://github.com/maferhel/PI1H/raw/master/DATA/df_UserForGenre.parquet',
+    'https://github.com/maferhel/PI1H/raw/master/DATA/df_best_developer_year.parquet',
+    'https://github.com/maferhel/PI1H/raw/master/DATA/df_developer_reviews_analysis.parquet',
+    'https://github.com/maferhel/PI1H/raw/master/DATA/df_games_filt_def.parquet',
+    'https://github.com/maferhel/PI1H/raw/master/DATA/df_muestramodelo.parquet',
+    'https://github.com/maferhel/PI1H/raw/master/DATA/df_userdata.parquet'
+]
 
-df_userdata = pd.read_parquet('DATA\df_userdata.parquet')
+# Lista para almacenar los DataFrames
+dataframes = []
 
-df_UserForGenre = pd.read_parquet('DATA\df_UserForGenre.parquet')
+# Iterar sobre las URLs y cargar los DataFrames
+for url in urls:
+    response = requests.get(url)
+    response.raise_for_status()
+    df = pd.read_parquet(BytesIO(response.content))
+    dataframes.append(df)
 
-df_best_developer_year = pd.read_parquet('DATA\df_best_developer_year.parquet')
 
-df_developer_reviews_analysis = pd.read_parquet('DATA\df_developer_reviews_analysis.parquet')
-
-df_muestramodelo = pd.read_parquet('DATA\df_muestramodelo.parquet')
 
 # FUNCIONES 
 
