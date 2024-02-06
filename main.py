@@ -1,3 +1,6 @@
+from google.cloud import storage
+from google.auth import default
+from dotenv import load_dotenv
 import sys
 sys.path.append('/opt/render/project/src/.venv/lib/python3.11/site-packages')
 from fastapi import FastAPI, Query, HTTPException
@@ -9,9 +12,9 @@ from google.cloud import storage
 from google.auth import default
 import os
 
-# Cargar variables de entorno desde el archivo CREDENCIALES.env
-from dotenv import load_dotenv 
+
 load_dotenv("CREDENCIALES.env")
+
 
 app = FastAPI(
     # Esta línea se añadió para ignorar el favicon.ico porque daba error 404
@@ -26,11 +29,11 @@ storage_client = storage.Client(credentials=credentials)
 
 # Función para cargar datos desde GCS
 def cargar_datos_desde_gcs(bucket_name, file_name):
-    bucket = storage_client.bucket(bucket_name)
-    blob = bucket.blob(file_name)
-    with blob.open('rb') as f:
-        df = pd.read_parquet(f)
-    return df
+  bucket = storage_client.bucket(bucket_name)
+  blob = bucket.blob(file_name)
+  with blob.open('rb') as f:
+    df = pd.read_parquet(f)
+  return df
 
 # Cargar los datos desde GCS
 bucket_name = 'pi1h-bucket'  # Nombre del bucket en GCS donde se encuentran los archivos
