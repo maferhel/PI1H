@@ -1,6 +1,6 @@
 ![steam](https://github.com/maferhel/PI1H/blob/master/DATA%20AUX/steam.jpg)
 <br />
-# Proyecto MLOps: Sistema de Recomendación de Videojuegos
+# Proyecto MLOps: Sistema de Recomendación de Video Juegos
 
 ### Descripción del Proyecto
 Este proyecto es la primer instancia fiinal de la fase de LABS del bootcamp de Henry, el que apunta a poner en práctica de habilidades técnicas adquiridas a lo largo de la cursada y las soft skills que cada uno posee y que será necesarias para insertarse en el mercado laboral. La propuesta consiste ser un caso de negocio real utilizando conjuntos de datos públicos de la industria de videojuegos,la plataforma en línea STEAM.
