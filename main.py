@@ -24,22 +24,24 @@ urls = [
     'https://github.com/maferhel/PI1H/raw/master/DATA/df_userdata.parquet'
 ]
 
-# Lista para almacenar los DataFrames
-dataframes = []
+dataframes = {}
 
 # Iterar sobre las URLs y cargar los DataFrames
 for url in urls:
     response = requests.get(url)
     response.raise_for_status()
+    # Obtener el nombre del DataFrame a partir de la URL
+    df_name = url.split('/')[-1].replace('.parquet', '')
     df = pd.read_parquet(BytesIO(response.content))
-    dataframes.append(df)
-
+    # Asignar el DataFrame a una variable específica según su nombre
+    dataframes[df_name] = df
 
 
 # FUNCIONES 
 
 #1.- def developer( desarrollador : str ): Cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora. 
 def developer(desarrollador):
+    df_games_filt_def = dataframes['df_games_filt_def']
     df_games_filt_def['release_date'] = pd.to_datetime(df_games_filt_def['release_date'])
     df_filtered = df_games_filt_def[df_games_filt_def['developer'] == desarrollador]
     df_filtered = df_filtered.dropna(subset=['release_date'])
@@ -71,6 +73,7 @@ async def get_developer(desarrollador: str):
 
 #2.- def userdata( User_id : str ): Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.
 def userdata(User_id: str):
+    df_userdata = dataframes['df_userdata']
     user_data = df_userdata[df_userdata['user_id'] == User_id]
     
     if user_data.empty:
@@ -93,6 +96,7 @@ async def get_userdata(User_id: str):
 
 #3.- def UserForGenre( genero : str ): Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.
 def UserForGenre(genero: str, df_UserForGenre: pd.DataFrame):
+    df_UserForGenre = dataframes['df_UserForGenre']
     df_UserForGenre = df_UserForGenre.dropna(subset=['genres'])
     df_expanded = df_UserForGenre.explode('genres')
     df_genre = df_expanded[df_expanded['genres'].str.contains(genero, case=False)]
@@ -112,14 +116,16 @@ def UserForGenre(genero: str, df_UserForGenre: pd.DataFrame):
 # Defino la ruta de la API y el método HTTP
 @app.get("/user_for_genre/")
 async def get_user_for_genre(genero: str):
-    result = UserForGenre(genero, df_UserForGenre) # Aquí debes proporcionar df_UserForGenre
+    result = UserForGenre(genero, dataframes['df_UserForGenre'])# Aquí debes proporcionar df_UserForGenre
     return result
 
 
 # --------------------------------
 
+    
 #4.- def best_developer_year( año : int ): Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos)
 def best_developer_year(año: int):
+    df_best_developer_year = dataframes['df_best_developer_year']
     juegos_del_año = df_best_developer_year[df_best_developer_year['release_date'].dt.year == año]
     juegos_recomendados = juegos_del_año[(juegos_del_año['recommend'] == True) & (juegos_del_año['sentiment_analysis'] == 2.0)]
     recomendaciones_por_desarrollador = juegos_recomendados['developer'].value_counts()
@@ -142,6 +148,7 @@ async def get_best_developer_year(año: int):
 
 #5.- def developer_reviews_analysis( desarrolladora : str ): Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor positivo o negativo.
 def developer_reviews_analysis(desarrolladora: str, df_developer_reviews_analysis: pd.DataFrame) -> dict:
+    df_developer_reviews_analysis = dataframes['df_developer_reviews_analysis']
     df_filtered = df_developer_reviews_analysis[df_developer_reviews_analysis['developer'] == desarrolladora]
     positive_count = (df_filtered['sentiment_analysis'] == 2.0).sum()
     negative_count = (df_filtered['sentiment_analysis'] == 0.0).sum()
@@ -152,7 +159,7 @@ def developer_reviews_analysis(desarrolladora: str, df_developer_reviews_analysi
 # Defino la ruta de la API y el método HTTP
 @app.get("/developer_reviews_analysis/")
 async def get_developer_reviews_analysis(desarrolladora: str):
-    resultado = developer_reviews_analysis(desarrolladora, df_developer_reviews_analysis) # Asegúrate de proporcionar df_developer_reviews_analysis
+    resultado = developer_reviews_analysis(desarrolladora, dataframes['df_developer_reviews_analysis']) # Asegúrate de proporcionar df_developer_reviews_analysis
     return resultado
 
 # --------------------------------
@@ -162,6 +169,7 @@ async def get_developer_reviews_analysis(desarrolladora: str):
 
 @app.get("/recomendacion/{producto_id}")
 async def recomendacion_juego(producto_id: int, num_recomendaciones: int = 5) -> Tuple[str, List[str]]:
+    df_muestramodelo = dataframes['df_muestramodelo']
     nombre_juego = df_muestramodelo[df_muestramodelo['item_id'] == producto_id]['item_name'].values[0]
     juego_caracteristicas = df_muestramodelo[df_muestramodelo['item_id'] == producto_id].iloc[:, 2:].values
     otros_juegos_caracteristicas = df_muestramodelo[df_muestramodelo['item_id'] != producto_id].iloc[:, 2:].values
