@@ -1,11 +1,14 @@
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query,  HTTPException
 import pandas as pd
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
 import uvicorn
 
-app = FastAPI()
+app = FastAPI(
+    # Esta línea se añadió para ignorar el favicon.ico porque daba error 404
+    default_response_class_for_errors={404: HTTPException},
+)
 
 # Cargar los datos 
 
