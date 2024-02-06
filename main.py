@@ -1,48 +1,25 @@
-from google.cloud import storage
-from google.auth import default
-from dotenv import load_dotenv
-import sys
-sys.path.append('/opt/render/project/src/.venv/lib/python3.11/site-packages')
-from fastapi import FastAPI, Query, HTTPException
+
+from fastapi import FastAPI, Query
 import pandas as pd
 from typing import List, Tuple
 from sklearn.metrics.pairwise import cosine_similarity
 import uvicorn
-from google.cloud import storage
-from google.auth import default
-import os
 
+app = FastAPI()
 
-load_dotenv("CREDENCIALES.env")
+# Cargar los datos 
 
+df_games_filt_def = pd.read_parquet('DATA\df_games_filt_def.parquet')
 
-app = FastAPI(
-    # Esta línea se añadió para ignorar el favicon.ico porque daba error 404
-    default_response_class_for_errors={404: HTTPException},
-)
+df_userdata = pd.read_parquet('DATA\df_userdata.parquet')
 
-# Obtener las credenciales predeterminadas del entorno
-credentials, _ = default()
+df_UserForGenre = pd.read_parquet('DATA\df_UserForGenre.parquet')
 
-# Configurar el cliente de almacenamiento con las credenciales
-storage_client = storage.Client(credentials=credentials)
+df_best_developer_year = pd.read_parquet('DATA\df_best_developer_year.parquet')
 
-# Función para cargar datos desde GCS
-def cargar_datos_desde_gcs(bucket_name, file_name):
-  bucket = storage_client.bucket(bucket_name)
-  blob = bucket.blob(file_name)
-  with blob.open('rb') as f:
-    df = pd.read_parquet(f)
-  return df
+df_developer_reviews_analysis = pd.read_parquet('DATA\df_developer_reviews_analysis.parquet')
 
-# Cargar los datos desde GCS
-bucket_name = 'pi1h-bucket'  # Nombre del bucket en GCS donde se encuentran los archivos
-df_games_filt_def = cargar_datos_desde_gcs(bucket_name, 'DATA/df_games_filt_def.parquet')
-df_userdata = cargar_datos_desde_gcs(bucket_name, 'DATA/df_userdata.parquet')
-df_UserForGenre = cargar_datos_desde_gcs(bucket_name, 'DATA/df_UserForGenre.parquet')
-df_best_developer_year = cargar_datos_desde_gcs(bucket_name, 'DATA/df_best_developer_year.parquet')
-df_developer_reviews_analysis = cargar_datos_desde_gcs(bucket_name, 'DATA/df_developer_reviews_analysis.parquet')
-df_muestramodelo = cargar_datos_desde_gcs(bucket_name, 'DATA/df_muestramodelo.parquet')
+df_muestramodelo = pd.read_parquet('DATA\df_muestramodelo.parquet')
 
 # FUNCIONES 
 

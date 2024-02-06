@@ -3,12 +3,12 @@
 # Proyecto MLOps: Sistema de Recomendación de Video Juegos
 
 ### Descripción del Proyecto
-Este proyecto es la primer instancia fiinal de la fase de LABS del bootcamp de Henry, el que apunta a poner en práctica de habilidades técnicas adquiridas a lo largo de la cursada y las soft skills que cada uno posee y que será necesarias para insertarse en el mercado laboral. La propuesta consiste ser un caso de negocio real utilizando conjuntos de datos públicos de la industria de videojuegos,la plataforma en línea STEAM.
+Este proyecto es la primer instancia fiinal de la fase de LABS del bootcamp de Henry, el que apunta a poner en práctica de habilidades técnicas adquiridas a lo largo de la cursada y las soft skills que cada uno posee, las que son necesarias reconocer para insertarse en el mercado laboral. La propuesta consiste en un caso de negocio real utilizando conjuntos de datos públicos de la industria de videojuegos,la plataforma en línea STEAM.
 
 ### Objetivo
-El objetivo central de la propuesta es la creación de un modelo de Machine Learning (item-item) para lograr esto se toma un item, en base a las similitudes de ese item con el resto, se recomiendan similares utilizando para ello la herramienta de similitud del coseno. 
+El objetivo central de la propuesta es la creación de un modelo de Machine Learning (item-item). Para lograr esto del data set consumible se toma un item, en base a las similitudes de ese item con el resto que integran la base de datos, se recomiendan similares, utilizando para ello la herramienta de similitud del coseno. 
 
-Asimismo, éste enfoque involucra la realización de distintas tareas de Data Engineering como ser ETL, EDA, y construcción de una API hasta llegar a la implementación del m odelo ML. Se busca lograr un rápido desarrollo y tener un Producto Mínimo Viable (MVP).<br />
+Asimismo, la elaboración de este producto involucra la realización de distintas tareas de Data Engineering como ser ETL, EDA, y construcción de una API hasta llegar a la implementación del modelo ML. En resumidas cuentas, se busca lograr un rápido desarrollo y tener un Producto Mínimo Viable (MVP) que mostrar al cliente que requiere el producto.<br />
 <br />
 
 ## Etapas del Proyecto <br />
@@ -28,8 +28,7 @@ Asimismo, éste enfoque involucra la realización de distintas tareas de Data En
 - Finalmente opté por utilizar la librería "textblob" porque demostró una tendencia más "positiva" y, por ende útil para el futuro modelo de recomendación, ya que para ello necesesitamos que haya la mayor cantidad de recomendaciones positivas, o por lo menos neutrales, para que el modelo funcione mejor.<br />
 
 **4. CARGA DE DATOS (DESARROLLO DE FUNCIONES).** <br />
-
-- En vista de que los datos sean consumibles a través de una API se desarrollaron las siiguientes funciones:<br />
+- En vista de que los datos sean consumibles a través de una API se desarrollaron las funciones, que a continuación se enuncian, aclarando a su vez que los datasets fueron limitados a 5000 entradas, a los fines de obtener archivos livianos que se puedan deployar en los entornos correspondientes:<br />
   + Endpoint 1 (def developer): devuelve la cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora.<br />
   + Endpoint 2 (def userdata): la consulta retorna la cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.<br />
   + Endpoint 3 (def UserForGenre): su ejecución arroja el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.<br />
@@ -49,10 +48,10 @@ Para acceder a la funcionalidad completa de la API y explorar las recomendacione
 Como este readme es un esquema de lo que implicó el proyecyo, los invito a consultar el script [PI_NRO_1](https://github.com/maferhel/PI1H/blob/master/PI_NRO_1.ipynb) para profundizar en detalle cada tarea realizada.<br />
 
 
-**4. Implementación de MLOps** <br />
+## Implementación de MLOps** <br />
 Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](http://127.0.0.1:8000/docs). <br />
 
-**5. Video Explicativo** <br />
+## Video Explicativo** <br />
 Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https:/.....).<br />
 <br />
 
