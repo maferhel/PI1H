@@ -34,7 +34,7 @@ Asimismo, la elaboración de este producto involucra la realización de distinta
   + Endpoint 3 (def UserForGenre): su ejecución arroja el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.<br />
   + Endpoint 4 (def best_developer_year): su consulta devuelve el top 3 de desarrolladores con juegos más recomendados por usuarios para el año dado.<br />
   + Endpoint 5 (def developer_reviews_analysis): Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor positivo o negativo.<br />
-Para acceder a la funcionalidad completa de la API y explorar las recomendaciones de juegos, puedes visitar este enlace [URL de la API](https://pi1h.onrender.com) En este sitio, encontrarás las diversas funciones desarrolladas. ¡Disfruta explorando!.
+Para acceder a la funcionalidad completa de la API y explorar las recomendaciones de juegos, puedes visitar este enlace [URL de la API](https://pi1h.onrender.com/docs) En este sitio, encontrarás las diversas funciones desarrolladas.<br />
   
 **5. PREPARACIÓN DEL MODELO DE RECOMENDACIÓN** <br />
 - En esta etapa me avoque a trabajar sobre el data sets "df_UserForGenre", el que finalmente utilice para realizar el modelo de recomendación, concretamente el de recomendación de juego con una relación ítem-ítem, al que se le eliminaron las columnas innecesarias y se efectuaron las manipulaciones que eran apropiadas para disponibilizar una base de datos consumible por el modelo.<br />
@@ -45,11 +45,11 @@ Para acceder a la funcionalidad completa de la API y explorar las recomendacione
 **7. ENTRENAMIENTO DEL MODELO DE RECOMENDACIÓN DE JUEGOS** <br />
 - Aquí,a partir de la codificación de la columna "genres" realizada en la etapa 5, mediante la técnica de codificación one-hot para convertir los géneros en características binarias, teniendo presente la particularidad de esa columna, por ser una lista de cadenas de str, finalmente desarrollé la función para entrenar y consumir el modelo de ML, de recomendación de juegos.<br />
 
-Como este readme es un esquema de lo que implicó el proyecyo, los invito a consultar el script [PI_NRO_1](https://github.com/maferhel/PI1H/blob/master/PI_NRO_1.ipynb) para profundizar en detalle cada tarea realizada.<br />
+Como este readme es un esquema de lo que implicó el proyecyo, los invito a consultar el script [PI_NRO_1](https://github.com/maferhel/PI1H/blob/master/PI_NRO_1.ipynb) para profundizar en detalle cada tarea realizada. ¡Disfruta mientras navegas por el código!<br />
 
 
 ## Implementación de MLOps** <br />
-Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](https://pi1h.onrender.com). <br />
+Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](https://pi1h.onrender.com/docs). <br />
 
 ## Video Explicativo** <br />
 Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https:/.....).<br />
@@ -59,11 +59,11 @@ Grabé un video explicativo que muestra el funcionamiento de la API, consultas r
 ## Ejecutar la API (en su máquina local) <br />
 1. Clonar el repositorio <br />
 ```
-git@github.com:JohannaRangel/Proyecto_Individual_1_MLOps.git
+git@github.com:maferhel/PI1H.git
 ```
 2. Crear entorno virtual<br />
 ```
-python3 -m venv <nombre_del_entonto>
+python3 -m venv PI1H
 ```
 3. Vaya al directorio del entorno virtual y actívelo<br />
 - 3.1. Para Windows:
