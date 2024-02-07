@@ -53,7 +53,7 @@ Como este readme es un esquema de lo que implicó el proyecyo, los invito a cons
 Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](https://pi1h.onrender.com/docs). <br />
 
 ## Video Explicativo** <br />
-Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https://www.loom.com/share/cdc28fe604c04343a35e22f565d05e52?sid=177cd32b-f17a-4ae6-bc70-6599635283e6).<br />
+Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https://www.loom.com/share/edfee88d226e4b04a713f5a9cf8d8d4d).<br />
 <br />
 
 
