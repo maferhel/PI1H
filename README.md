@@ -34,6 +34,7 @@ Asimismo, la elaboración de este producto involucra la realización de distinta
   + Endpoint 3 (def UserForGenre): su ejecución arroja el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.<br />
   + Endpoint 4 (def best_developer_year): su consulta devuelve el top 3 de desarrolladores con juegos más recomendados por usuarios para el año dado.<br />
   + Endpoint 5 (def developer_reviews_analysis): Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor positivo o negativo.<br />
+
 Para acceder a la funcionalidad completa de la API y explorar las recomendaciones de juegos, puedes visitar este enlace [URL de la API](https://pi1h.onrender.com/docs) En este sitio, encontrarás las diversas funciones desarrolladas.<br />
   
 **5. PREPARACIÓN DEL MODELO DE RECOMENDACIÓN** <br />
@@ -52,7 +53,7 @@ Como este readme es un esquema de lo que implicó el proyecyo, los invito a cons
 Al igual que las funciones, el modelo de ML se puede consumir desde [URL de la API](https://pi1h.onrender.com/docs). <br />
 
 ## Video Explicativo** <br />
-Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https:/.....).<br />
+Grabé un video explicativo que muestra el funcionamiento de la API, consultas realizadas y una breve explicación de los modelos de ML utilizados [VIDEO](https://www.loom.com/share/cdc28fe604c04343a35e22f565d05e52?sid=177cd32b-f17a-4ae6-bc70-6599635283e6).<br />
 <br />
 
 
