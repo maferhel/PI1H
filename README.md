@@ -3,7 +3,7 @@
 # Proyecto MLOps: Sistema de Recomendación de Video Juegos
 
 ### Descripción del Proyecto
-Este proyecto es la primer instancia fiinal de la fase de LABS del bootcamp de Henry, el que apunta a poner en práctica de habilidades técnicas adquiridas a lo largo de la cursada y las soft skills que cada uno posee, las que son necesarias reconocer para insertarse en el mercado laboral. La propuesta consiste en un caso de negocio real utilizando conjuntos de datos públicos de la industria de videojuegos,la plataforma en línea STEAM.
+Este proyecto es la primer instancia final de la fase de LABS del bootcamp de Henry, el que apunta a poner en práctica de habilidades técnicas adquiridas a lo largo de la cursada y las soft skills que cada uno posee, las que son necesarias reconocer para insertarse en el mercado laboral. La propuesta consiste en un caso de negocio real utilizando conjuntos de datos públicos de la industria de videojuegos,la plataforma en línea STEAM.
 
 ### Objetivo
 El objetivo central de la propuesta es la creación de un modelo de Machine Learning (item-item). Para lograr esto del data set consumible se toma un item, en base a las similitudes de ese item con el resto que integran la base de datos, se recomiendan similares, utilizando para ello la herramienta de similitud del coseno. 
